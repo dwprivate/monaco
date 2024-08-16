@@ -24,3 +24,7 @@ Build everything and serve the contents of `docs`:
     npx http-server -c-1 docs
 
 Open `http://127.0.0.1:8080/`
+
+## html bundle
+
+see branch html-bundle to configure and use Cucumber Monaco from HTML page
