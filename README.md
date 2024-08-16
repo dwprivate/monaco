@@ -7,7 +7,8 @@ This library configures a [monaco editor](https://github.com/microsoft/monaco-ed
 The editor can be embedded on web pages and offers similar functionality to the 
 [VSCode Cucumber Extension](https://marketplace.visualstudio.com/items?itemName=CucumberOpen.cucumber-official)
 
-The library ships with support for React as well as vanilla JavaScript. See the [try](./try) source code for details.
+The library ships with support for React** as well as vanilla JavaScript. See the [try](./try) source code for details.
+** React support is no longer supported on this branch
 
 [Live demo](https://cucumber.github.io/monaco/).
 
@@ -15,12 +16,16 @@ The library ships with support for React as well as vanilla JavaScript. See the 
 
 The library can be used with vanilla DOM as well as React. See [try/index.tsx](try/index.tsx) (the source for the live demo) for details.
 
-## Local demo
+## Bundle for HTML
 
-Build everything and serve the contents of `docs`:
+Build everything and reuse the contents of `monaco` (yes, indeed monaco/monaco):
 
     npm install
     npm run webpack
-    npx http-server -c-1 docs
+
+
+Local demo:
+
+    npx http-server -c-1 monaco
 
 Open `http://127.0.0.1:8080/`

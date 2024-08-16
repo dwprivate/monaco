@@ -26,7 +26,7 @@
     "prepublishOnly": "npm run build",
     "eslint-fix": "eslint --ext ts,tsx --max-warnings 0 --fix src test try",
     "eslint": "eslint --ext ts,tsx --max-warnings 0 src test try",
-    "webpack": "npm run build:cjs && rm -f docs/*.js docs/*.ttf docs/*.txt docs/*.wasm && webpack && cp node_modules/@cucumber/language-service/dist/*.wasm docs"
+    "webpack": "npm run build:cjs && rm -rf monaco && webpack && cp node_modules/@cucumber/language-service/dist/*.wasm monaco && cp try/index.html monaco"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>Cucumber Monaco</title>
+  <style>
+      .editor {
+          width: 800px;
+          height: 300px;
+          border: 1px solid #ccc;
+      }
+  </style>
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body>
+<h1>Monaco Editor with Cucumber Plugin</h1>
+<p>Things you can try:</p>
+<ul>
+  <li>⇧⌥F - Format Document</li>
+  <li>Modify the first step and see it underlined as undefined</li>
+  <li>Type a new step and see auto-complete suggestions</li>
+</ul>
+<h2>Plain JavaScript editor</h2>
+<div id="editor1" class="editor"></div>
+
+<script src="./main.bundle.js"></script>
+<script>
+  // Exemple de fonction pour définir dynamiquement le contenu de l'éditeur
+  function setEditorContent(newContent) {
+    if (window.editor) {
+      window.editor.setValue(newContent)
+    } else {
+      console.warn('Editor is not initialized yet')
+    }
+  }
+
+  const javascriptEditor = document.getElementById('editor1')
+  const value = `@foo
+Feature: Hello
+Scenario: Hi
+  Given I have 58 cukes in my belly
+  And this is an undefined step
+    | some | poorly |
+    | formatted | table |
+`
+  const options = {
+    value,
+    // https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html
+    language: 'gherkin',
+    theme: 'vs-dark',
+    fontSize: 16,
+    // semantic tokens provider is disabled by default
+    'semanticHighlighting.enabled': true,
+    // disable suggestion
+    suggestOnTriggerCharacters: false,
+      quickSuggestions: { other: false, comments: false, strings: false },
+      acceptSuggestionOnEnter: "off",
+      wordBasedSuggestions: false
+  }
+
+
+  window.makeConfigureEditor()
+    .then((configureEditor) => {
+
+      editor = window.monaco.editor.create(javascriptEditor, options)
+      window.editor = editor
+      configureEditor(editor)
+      setInterval(function(){ window.monaco.editor.setModelMarkers(editor.getModel(), 'gherkin', []);},100);
+
+
+    })
+    .catch((err) => console.error(err.stack))
+
+
+</script>
+</body>
+</html>
